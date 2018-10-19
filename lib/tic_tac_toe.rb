@@ -27,11 +27,11 @@ class TicTacToe
     n.to_i - 1
   end
 
-  def move(u_index, char)
-    @board[u_index] = char
+  def move(index, token)
+    @board[index] = token
     @board
   end
 
-  
+
 
 end
