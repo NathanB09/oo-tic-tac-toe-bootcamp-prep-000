@@ -36,6 +36,54 @@ class TicTacToe
     @board[index] == "X" || @board[index] == "O"
   end
 
-  
+  def valid_move?(index)
+    !position_taken?(index) && index.between?(0, 8)
+  end
+
+  def turn_count
+    count = 0
+    @board.each do |token|
+      token == "X" || token == "O" ? count += 1 : nil
+    end
+    count
+  end
+
+  def current_player
+    turn_count % 2 == 0 ? "X" : "O"
+  end
+
+  def turn
+    puts "Please enter 1-9:"
+    user_index = input_to_index(gets.strip)
+    if valid_move?(user_index)
+      move(user_index, current_player)
+      display_board
+    else
+      turn
+    end
+  end
+
+  def won?
+    WIN_COMBINATIONS.find do |combo|
+      @board[combo[0]] == @board[combo[1]] &&
+        @board[combo[2]] == @board[combo[1]] ? combo : false
+    end
+  end
+
+  def full?
+    !@board.include?(" " || "" || nil)
+  end
+
+  def draw?
+    !won? && full?
+  end
+
+  def over?
+    won? || draw? || full?
+  end
+
+  def winner
+    won?.class == Array ? @board[won?[0]] : nil
+  end
 
 end
