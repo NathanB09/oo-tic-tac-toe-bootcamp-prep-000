@@ -90,9 +90,7 @@ class TicTacToe
   def play
     puts "Welcome to Tic Tac Toe!"
     display_board
-    while !over?
-      turn
-    end
+    turn until over?
 
     if won?
       puts "Congratulations #{winner}!"
