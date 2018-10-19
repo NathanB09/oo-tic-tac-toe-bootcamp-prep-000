@@ -86,4 +86,14 @@ class TicTacToe
     won?.class == Array ? @board[won?[0]] : nil
   end
 
+  def play
+    turn until over?
+
+    if won?
+      puts "Congratulations #{winner(board)}!"
+    elsif draw?
+      puts "Cat's Game!"
+    end
+  end
+
 end
